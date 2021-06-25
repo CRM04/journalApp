@@ -12,6 +12,7 @@ import { firebase } from '../firebase/firebaseConfig';
 import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { getNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -23,6 +24,7 @@ export const AppRouter = () => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 dispatch(login(user.uid, user.displayName));
+                dispatch(getNotes(user.uid));
                 setisAuth(true);
             } else {
                 setisAuth(false);
