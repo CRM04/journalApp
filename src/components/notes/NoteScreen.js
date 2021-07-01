@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateNoteData } from '../../actions/notes';
+import { deteleNote, updateNoteData } from '../../actions/notes';
 import { NotesAppBar } from './NotesAppBar'
 
 export const NoteScreen = () => {
@@ -13,6 +13,11 @@ export const NoteScreen = () => {
             [ev.target.name]: ev.target.value
         };
         dispatch(updateNoteData(data));
+    }
+
+    const handleDelete = () => {
+        console.log(id);
+        dispatch(deteleNote(id));
     }
 
     return (
@@ -47,8 +52,8 @@ export const NoteScreen = () => {
                     />
                 </div>}
 
-
             </div>
+            <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
 
         </div>
     )

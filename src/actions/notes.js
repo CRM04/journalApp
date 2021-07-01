@@ -11,8 +11,16 @@ export const newEntry = () => {
             body: '',
             date: new Date().getTime()
         }
-        const docRef = await db.collection(`${uid}/journal/notes/`).add(newNote);
-        dispatch(setActiveNote(docRef, newNote));
+        const { id } = await db.collection(`${uid}/journal/notes/`).add(newNote);
+        dispatch(setActiveNote(id, newNote));
+        dispatch(addNewNote(id, newNote));
+    }
+}
+
+export const addNewNote = (id, note) => {
+    return {
+        type: types.notesAddNewNote,
+        payload: { id, ...note }
     }
 }
 
@@ -96,5 +104,27 @@ export const uploadImg = (file) => {
         activeNote.imgURL = url;
         dispatch(saveNote(activeNote));
         Swal.close();
+    }
+}
+
+export const deteleNote = (id) => {
+    return async (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        await db.doc(`${uid}/journal/notes/${id}`).delete();
+        dispatch(deleteLocally(id));
+    }
+}
+
+const deleteLocally = (id) => {
+    return {
+        type: types.notesDelete,
+        payload: id
+    }
+}
+
+
+export const logoutCleaning = () => {
+    return {
+        type: types.notesLogOutCleaning
     }
 }

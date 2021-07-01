@@ -33,6 +33,14 @@
     }
 }
 
+.btn-danger{
+    background-color: #A23238;
+    transition: background-color .5s ease;
+    &:hover {
+        background-color: lighten($color: #A23238, $amount: 10);
+    }
+}
+
 .btn-block {
     width: 100%;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logOutFireBase } from '../../actions/auth';
-import { newEntry } from '../../actions/notes';
+import { logoutCleaning, newEntry } from '../../actions/notes';
 import { JournalEntries } from './JournalEntries'
 
 export const Sidebar = () => {
@@ -10,6 +10,7 @@ export const Sidebar = () => {
 
     const handleLogout = () => {
         dispatch(logOutFireBase());
+        dispatch(logoutCleaning());
     }
 
     const handleNewEntry = () => {

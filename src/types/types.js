@@ -8,6 +8,7 @@ export const types = {
 
     notesNewNote: '[Notes] New note',
     notesActive: '[Notes] Set active note',
+    notesAddNewNote: '[Notes] Add new note to memory var',
     notesLoad: '[Notes] Load notes',
     notesUpdated: '[Notes] Updated note',
     saveNoteLocal: '[Notes] Update note locally',

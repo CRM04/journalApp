@@ -15,7 +15,7 @@ export const uploadIMG = async (file) => {
             const data = await res.json();
             return data.secure_url;
         } else {
-            throw await res.json();
+            return null;
         }
     } catch (err) {
         throw err;
